@@ -44,11 +44,15 @@ def get_geolocation():
 			lng = float(lng)
 			#print lat1," ",lng1," ",mag,"\n"
 			
-			dlat = (lat1-lat)*(math.pi/180)
-			dlng = (lng1-lng)*(math.pi/180)
-
-			lat_new = lat*(math.pi/180)
-			lng_new = lng*(math.pi/180)
+			#dlat = (lat1-lat)*(math.pi/180)
+			#dlng = (lng1-lng)*(math.pi/180)
+			dlat = lat1-lat
+			dlng = lng1-lng
+			
+			#lat_new = lat*(math.pi/180)
+			#lng_new = lng*(math.pi/180)
+			lat_new = lat
+			lng_new = lng
 
 			a = math.sin(dlat/2)*math.sin(dlat/2)+math.sin(dlng/2) * math.sin(dlng/2) * math.cos(lat) * math.cos(lat1); 
 			c = 2 * math.atan2(math.sqrt(abs(a)),math.sqrt(1-a));
