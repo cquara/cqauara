@@ -1,13 +1,13 @@
-#!/usr/bin/python
-
 import urllib2
 import commands
 import re
 import math
 import subprocess
+import time
+
+
 
 def get_geolocation():
-	#try:
 		R = 6731
 		alert = "Quake Occured At A Distance Of : "
 		file_name = "test"
@@ -44,13 +44,9 @@ def get_geolocation():
 			lng = float(lng)
 			#print lat1," ",lng1," ",mag,"\n"
 			
-			#dlat = (lat1-lat)*(math.pi/180)
-			#dlng = (lng1-lng)*(math.pi/180)
-			dlat = lat1-lat
-			dlng = lng1-lng
-			
-			#lat_new = lat*(math.pi/180)
-			#lng_new = lng*(math.pi/180)
+			dlat = (lat1-lat)
+			dlng = (lng1-lng)
+
 			lat_new = lat
 			lng_new = lng
 
@@ -64,7 +60,9 @@ def get_geolocation():
 		if(minimum < 2000.0):
 			subprocess.call(["espeak",alert+str(minimum)+" kilometers","-w"+file_name+".wav"])
 			print "Alert message..."
-			for i in range(1,10):
-				subprocess.call(["sudo","./pifm","test.wav","96"])
+			#for i in range(1,20):
+				#subprocess.call(["sudo","./pifm","test.wav","96"])
 
-get_geolocation()
+while(True):
+	get_geolocation()
+	time.sleep(300)
